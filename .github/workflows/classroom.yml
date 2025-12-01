@@ -1,0 +1,431 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: hw9-1-1
+      id: hw9-1-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-1-1
+        setup-command: gcc hw9-1.c -lm
+        command: "./a.out"
+        input: |-
+          2
+          4
+          1
+          3
+        expected-output: |-
+          Determinant is 2.000000
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-1-2
+      id: hw9-1-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-1-2
+        setup-command: gcc hw9-1.c -lm
+        command: "./a.out"
+        input: |-
+          1
+          3
+          4
+          5
+        expected-output: |-
+          Determinant is -7.000000
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-1-3
+      id: hw9-1-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-1-3
+        setup-command: gcc hw9-1.c -lm
+        command: "./a.out"
+        input: |-
+          9
+          8
+          6
+          5
+        expected-output: |-
+          Determinant is -3.000000
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-2-1
+      id: hw9-2-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-2-1
+        setup-command: gcc hw9-2.c -lm
+        command: "./a.out"
+        input: |-
+          4
+          2
+          9
+          61
+          0
+          2
+          5
+          7
+          9
+        expected-output: |-
+          You entered
+          4 2 9 
+          61 0 2 
+          5 7 9 
+          Output
+          9 2 4 
+          2 0 61 
+          9 7 5
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-2-2
+      id: hw9-2-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-2-2
+        setup-command: gcc hw9-2.c -lm
+        command: "./a.out"
+        input: |-
+          1
+          2
+          3
+          4
+          5
+          6
+          7
+          8
+          9
+        expected-output: |-
+          You entered
+          1 2 3 
+          4 5 6 
+          7 8 9 
+          Output
+          3 2 1 
+          6 5 4 
+          9 8 7
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-2-3
+      id: hw9-2-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-2-3
+        setup-command: gcc hw9-2.c -lm
+        command: "./a.out"
+        input: |-
+          3
+          2
+          1
+          1
+          3
+          3
+          2
+          1
+          1
+        expected-output: |-
+          You entered
+          3 2 1 
+          1 3 3 
+          2 1 1 
+          Output
+          1 2 3 
+          3 3 1 
+          1 1 2
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-3-1
+      id: hw9-3-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-3-1
+        setup-command: gcc hw9-3.c -lm
+        command: "./a.out"
+        input: |-
+          1.1
+          -1
+          9
+          35
+          2
+          41
+          29
+          7
+          20
+          1
+          3
+          8
+        expected-output: |-
+          The first matrix you entered is
+          1.1 -1 9 
+          35 2 41 
+          The second matrix you entered is
+          29 7 
+          20 1 
+          3 8 
+          The multiplication product of matrix A and matrix B:
+          38.9 78.7 
+          1178 575
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-3-2
+      id: hw9-3-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-3-2
+        setup-command: gcc hw9-3.c -lm
+        command: "./a.out"
+        input: |-
+          3
+          2
+          1
+          1
+          2
+          3
+          8
+          7
+          6
+          6
+          5
+          5
+        expected-output: |-
+          The first matrix you entered is
+          3 2 1 
+          1 2 3 
+          The second matrix you entered is
+          8 7 
+          6 6 
+          5 5 
+          The multiplication product of matrix A and matrix B:
+          41 38 
+          35 34
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-3-3
+      id: hw9-3-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-3-3
+        setup-command: gcc hw9-3.c -lm
+        command: "./a.out"
+        input: |-
+          1
+          2
+          2
+          1
+          4
+          5
+          6
+          7
+          8
+          8
+          7
+          6
+        expected-output: |-
+          The first matrix you entered is
+          1 2 2 
+          1 4 5 
+          The second matrix you entered is
+          6 7 
+          8 8 
+          7 6 
+          The multiplication product of matrix A and matrix B:
+          36 35 
+          73 69
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-4-1
+      id: hw9-4-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-4-1
+        setup-command: gcc hw9-4.c
+        command: "./a.out"
+        input: |-
+          10
+          10
+          105
+        expected-output: |-
+          The hex code is #0A0A69
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-4-2
+      id: hw9-4-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-4-2
+        setup-command: gcc hw9-4.c
+        command: "./a.out"
+        input: |-
+          0
+          255
+          10
+        expected-output: |-
+          The hex code is #00FF0A
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: hw9-4-3
+      id: hw9-4-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw9-4-3
+        setup-command: gcc hw9-4.c
+        command: "./a.out"
+        input: |-
+          55
+          123
+          112
+        expected-output: |-
+          The hex code is #377B70
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: ahw9-1-1
+      id: ahw9-1-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: ahw9-1-1
+        setup-command: gcc ahw9-1.c -lm
+        command: "./a.out"
+        input: |-
+          10
+          10
+          105
+        expected-output: |-
+          The nearest color is Black
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: ahw9-1-2
+      id: ahw9-1-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: ahw9-1-2
+        setup-command: gcc ahw9-1.c -lm
+        command: "./a.out"
+        input: |-
+          77
+          177
+          137
+        expected-output: |-
+          The nearest color is Green
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: ahw9-1-3
+      id: ahw9-1-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: ahw9-1-3
+        setup-command: gcc ahw9-1.c -lm
+        command: "./a.out"
+        input: |-
+          200
+          200
+          200
+        expected-output: |-
+          The nearest color is White
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: ahw9-2-1
+      id: ahw9-2-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: ahw9-2-1
+        setup-command: gcc ahw9-2.c -lm
+        command: "./a.out"
+        input: |-
+          3
+          2
+          50
+          6
+          0
+        expected-output: |-
+          sorted array:
+          0 2 3 6 50
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: ahw9-2-2
+      id: ahw9-2-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: ahw9-2-2
+        setup-command: gcc ahw9-2.c -lm
+        command: "./a.out"
+        input: |-
+          5
+          4
+          3
+          2
+          1
+        expected-output: |-
+          sorted array:
+          1 2 3 4 5
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: ahw9-2-3
+      id: ahw9-2-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: ahw9-2-3
+        setup-command: gcc ahw9-2.c -lm
+        command: "./a.out"
+        input: |-
+          1
+          3
+          2
+          4
+          0
+        expected-output: |-
+          sorted array:
+          0 1 2 3 4
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        HW9-1-1_RESULTS: "${{steps.hw9-1-1.outputs.result}}"
+        HW9-1-2_RESULTS: "${{steps.hw9-1-2.outputs.result}}"
+        HW9-1-3_RESULTS: "${{steps.hw9-1-3.outputs.result}}"
+        HW9-2-1_RESULTS: "${{steps.hw9-2-1.outputs.result}}"
+        HW9-2-2_RESULTS: "${{steps.hw9-2-2.outputs.result}}"
+        HW9-2-3_RESULTS: "${{steps.hw9-2-3.outputs.result}}"
+        HW9-3-1_RESULTS: "${{steps.hw9-3-1.outputs.result}}"
+        HW9-3-2_RESULTS: "${{steps.hw9-3-2.outputs.result}}"
+        HW9-3-3_RESULTS: "${{steps.hw9-3-3.outputs.result}}"
+        HW9-4-1_RESULTS: "${{steps.hw9-4-1.outputs.result}}"
+        HW9-4-2_RESULTS: "${{steps.hw9-4-2.outputs.result}}"
+        HW9-4-3_RESULTS: "${{steps.hw9-4-3.outputs.result}}"
+        AHW9-1-1_RESULTS: "${{steps.ahw9-1-1.outputs.result}}"
+        AHW9-1-2_RESULTS: "${{steps.ahw9-1-2.outputs.result}}"
+        AHW9-1-3_RESULTS: "${{steps.ahw9-1-3.outputs.result}}"
+        AHW9-2-1_RESULTS: "${{steps.ahw9-2-1.outputs.result}}"
+        AHW9-2-2_RESULTS: "${{steps.ahw9-2-2.outputs.result}}"
+        AHW9-2-3_RESULTS: "${{steps.ahw9-2-3.outputs.result}}"
+      with:
+        runners: hw9-1-1,hw9-1-2,hw9-1-3,hw9-2-1,hw9-2-2,hw9-2-3,hw9-3-1,hw9-3-2,hw9-3-3,hw9-4-1,hw9-4-2,hw9-4-3,ahw9-1-1,ahw9-1-2,ahw9-1-3,ahw9-2-1,ahw9-2-2,ahw9-2-3
